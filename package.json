@@ -1,0 +1,19 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "description": "CRUD básico",
+  "main": "index.js",
+  "scripts": {
+    "test": "http-serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DollarBill1/frontend-desafio1.git"
+  },
+  "author": "Pedro Lucas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DollarBill1/frontend-desafio1/issues"
+  },
+  "homepage": "https://github.com/DollarBill1/frontend-desafio1#readme"
+}
