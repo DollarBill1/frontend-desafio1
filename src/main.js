@@ -3,6 +3,8 @@
     
     (function start() {
         createTable();
+        document.querySelector('[data-js="formCadProduct"]').addEventListener('submit', cadProduct);
+
     })();
     function createLine(obj) {
         const tr = document.createElement('tr');
@@ -67,5 +69,36 @@
         .catch(function (error) {
             console.error(error);
         });
+    }
+
+    function cadProduct(evt) {
+        evt.preventDefault();
+        var formCadProduct = document.querySelector('[data-js="formCadProduct"]');
+        var name = formCadProduct.querySelector('[data-js="name"]');
+        var price = formCadProduct.querySelector('[data-js="price"]');
+        var qtsStock = formCadProduct.querySelector('[data-js="qtsStock"]');
+        var obs = formCadProduct.querySelector('[data-js="obs"]');
+        
+        const newProduct = {
+            nome: name.value,
+            quantidadeEstoque: qtsStock.value,
+            valor: price.value,
+            dataCadastro: new Date().toISOString(),
+            observacao: obs.value
+        };
+
+        axios.post(urlBase, newProduct)
+        .then((response) => { 
+            createTable();
+            name.value = '';
+            price.value = '';
+            qtsStock.value = '';
+            obs.value = '';
+            document.querySelector('[data-js="closeWinCad"]').click();
+            console.log(true);
+        })
+        .catch(function (error) {
+            console.error(error);
+        }); 
     }
 })();
