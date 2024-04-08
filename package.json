@@ -2,9 +2,9 @@
   "name": "frontend",
   "version": "1.0.0",
   "description": "CRUD básico",
-  "main": "index.js",
+  "main": "./src/main.js",
   "scripts": {
-    "test": "http-serve"
+    "test": "http-server"
   },
   "repository": {
     "type": "git",
@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/DollarBill1/frontend-desafio1/issues"
   },
-  "homepage": "https://github.com/DollarBill1/frontend-desafio1#readme"
+  "homepage": "https://github.com/DollarBill1/frontend-desafio1#readme",
+  "dependencies": {
+    "http-server": "^14.1.1"
+  }
 }
