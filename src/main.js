@@ -5,9 +5,8 @@
         createTable();
         document.querySelector('[data-js="formCadProduct"]').addEventListener('submit', cadProduct);
         document.querySelector('[data-js="formEditProduct"]').addEventListener('submit', EditProduct);
-
+        document.querySelector('[data-js="formDelProduct"]').addEventListener('submit', DelProduct);
     })();
-
     function createLine(obj) {
         const tr = document.createElement('tr');
         const editAndDel = 
@@ -32,10 +31,10 @@
         var btnEdit = lastCell.firstElementChild;
         var btnDel = lastCell.lastElementChild;
 
-
+        btnEdit.addEventListener('click', sendDataForformEdit);
+        btnDel.addEventListener('click', sendDataForformDel);
         return tr;
     }
-
     function createHeadTable(obj) {
         var thead = document.createElement('thead');
         var tr = document.createElement('tr');
@@ -49,7 +48,6 @@
         return thead;
     }
     function createTable() {
-
         var table = document.createElement('table');
         var docFrag = document.createDocumentFragment();
         var tbody = document.createElement('tbody');
@@ -166,5 +164,23 @@
         obs.value = trActual.cells[4].innerText;
         inputHidden.dataset.timestamp = trActual.cells[5].dataset.timestamp;
     }
-
+    function sendDataForformDel() {
+        var formDelProduct = document.querySelector('[data-js="formDelProduct"]');
+        var inputHidden = formDelProduct.querySelector('[data-js="idDel"]');
+        inputHidden.value = this.dataset.id;
+    }
+    function DelProduct(evt) {
+        evt.preventDefault();
+        var formDelProduct = document.querySelector('[data-js="formDelProduct"]');
+        var inputHidden = formDelProduct.querySelector('[data-js="idDel"]');
+        var url = urlBase + '/' + inputHidden.value;
+        axios.delete(url)
+        .then((response) => {
+            createTable();
+            document.querySelector('[data-js="closeWinDel"]').click();
+        })
+        .catch(function (error) {
+            console.error(error);
+        });
+    }
 })();
